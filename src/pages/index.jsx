@@ -12,11 +12,7 @@ import Team from "./Team";
 
 import Careers from "./Careers";
 
-import Apply from "./Apply";
-
-import careers from "./careers";
-
-import apply from "./apply";
+import Apply from "./apply";
 
 import Contact from "./contact";
 
