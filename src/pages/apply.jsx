@@ -103,7 +103,7 @@ export default function Apply() {
             <span>Join Our Team</span>
           </div>
           <h1 className="text-4xl lg:text-5xl font-bold mb-6 tracking-tight">
-            Apply to TemplateHub
+            Apply to BuildersLab
           </h1>
           <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
             Ready to make an impact? Submit your application and tell us why you'd be 
