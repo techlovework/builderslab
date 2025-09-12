@@ -11,7 +11,6 @@ import Dashboard from "./Dashboard";
 import Team from "./Team";
 
 import Careers from "./Careers";
-
 import Apply from "./apply";
 
 import Contact from "./contact";
@@ -47,12 +46,7 @@ const PAGES = {
   Team: Team,
 
   Careers: Careers,
-
   Apply: Apply,
-
-  careers: careers,
-
-  apply: apply,
 
   contact: Contact,
 
@@ -105,12 +99,7 @@ function PagesContent() {
         <Route path="/Team" element={<Team />} />
 
         <Route path="/Careers" element={<Careers />} />
-
         <Route path="/Apply" element={<Apply />} />
-
-        <Route path="/careers" element={<careers />} />
-
-        <Route path="/apply" element={<apply />} />
 
         <Route path="/contact" element={<Contact />} />
 
