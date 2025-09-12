@@ -5,5 +5,8 @@ import '@/index.css'
 import { Analytics } from "@vercel/analytics/react"
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-    <App />
+    <>
+      <App />
+      <Analytics />
+    </>
 ) 
