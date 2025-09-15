@@ -1,9 +1,11 @@
+
 import React from "react";
 import HeroSection from "../components/home/HeroSection";
 import FeaturedTemplates from "../components/home/FeaturedTemplates";
 import CategoryGrid from "../components/home/CategoryGrid";
 import TrustpilotReview from "../components/home/TrustpilotReview";
 import CustomWebsiteForm from "../components/home/CustomWebsiteForm";
+import ProjectsOfTheMonth from "../components/home/ProjectsOfTheMonth";
 
 const CompanyLogos = () => {
   const logos = [
@@ -62,6 +64,8 @@ export default function Home() {
         
         {/* Trust Section */}
         <CompanyLogos />
+
+        <ProjectsOfTheMonth />
 
         <CategoryGrid />
         <TrustpilotReview />

@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -40,12 +41,44 @@ export default function Apply() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    
+    const accessKey = 'YOUR_WEB3FORMS_ACCESS_KEY'; // IMPORTANT: Replace with your Web3Forms Access Key
 
-    // Simulate form submission
-    setTimeout(() => {
+    const submissionData = new FormData();
+    submissionData.append("access_key", accessKey);
+    submissionData.append("subject", `New Job Application: ${formData.position}`);
+    submissionData.append("from_name", `${formData.firstName} ${formData.lastName}`);
+
+    // Append all form data fields
+    for (const key in formData) {
+      submissionData.append(key, formData[key]);
+    }
+    
+    // Append the file
+    if (resumeFile) {
+      submissionData.append("resume", resumeFile);
+    }
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: submissionData,
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setIsSubmitted(true);
+      } else {
+        console.error('Submission Error:', result);
+        alert(result.message || 'There was an error submitting your application. Please try again.');
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      alert('There was an error submitting your application. Please try again.');
+    } finally {
       setIsSubmitting(false);
-      setIsSubmitted(true);
-    }, 2000);
+    }
   };
 
   if (isSubmitted) {

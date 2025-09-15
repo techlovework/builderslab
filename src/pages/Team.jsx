@@ -8,13 +8,13 @@ const teamMembers = [
   {
     id: 1,
     name: "Tega Emmanuel",
-    role: "CEO & Founder",
+    role: "Founder & CEO & Head Web Developer",
     department: "Leadership",
     image: "images/t.png",
     bio: "Drives the vision, ensuring BuildersLab stays at the forefront of web design innovation.",
     social: {
+      instagram: "https://instagram.com/tega",
       email: "mailto:tega@builderslab.net",
-      instagram: "https://instagram.com/tega_jnr",
       phone: "tel:+1234567890",
     },
   },
@@ -24,14 +24,14 @@ const teamMembers = [
     role: "Marketer & Web Developer",
     department: "Engineering",
     image: "images/kosi.png",
-    bio: "The architect of our technology, leading the development of our robust and scalable platform.",
+    bio: "Leads our marketing efforts and crafts seamless web experiences that captivate users.",
     social: {
       email: "mailto:kosi@builderslab.net",
       instagram: "https://instagram.com/kosi",
       phone: "tel:+1234567891",
     },
-  },
-
+  }
+  
 ];
 
 const SocialIcon = ({ type, href }) => {

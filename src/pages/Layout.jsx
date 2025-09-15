@@ -92,7 +92,7 @@ function LayoutContent({ children }) {
         }
 
         .glass-navbar-scrolled {
-          background: rgba(15, 23, 42, 0.5); /* Changed from 0.98 to 0.5 for 50% transparency */
+          background: rgba(15, 23, 42, 0.5);
           backdrop-filter: blur(30px);
           -webkit-backdrop-filter: blur(30px);
           border-bottom: 1px solid rgba(71, 85, 105, 0.4);
@@ -394,23 +394,59 @@ function LayoutContent({ children }) {
             </div>
             
             <div>
-              <h3 className="text-sm font-semibold text-white mb-4 uppercase tracking-wider">Categories</h3>
+              <h3 className="text-sm font-semibold text-white mb-4 uppercase tracking-wider">Quick Links</h3>
               <ul className="space-y-3 text-slate-400">
-                <li><a href="#" className="hover:text-white transition-colors duration-200 text-sm">E-commerce</a></li>
-                <li><a href="#" className="hover:text-white transition-colors duration-200 text-sm">Business</a></li>
-                <li><a href="#" className="hover:text-white transition-colors duration-200 text-sm">Portfolio</a></li>
-                <li><a href="#" className="hover:text-white transition-colors duration-200 text-sm">Crypto</a></li>
+                <li>
+                  <Link to={createPageUrl("Templates")} className="hover:text-white transition-colors duration-200 text-sm">
+                    Templates
+                  </Link>
+                </li>
+                <li>
+                  <Link to={createPageUrl("AIBuilder")} className="hover:text-white transition-colors duration-200 text-sm">
+                    AI Builder
+                  </Link>
+                </li>
+                <li>
+                  <Link to={createPageUrl("Team")} className="hover:text-white transition-colors duration-200 text-sm">
+                    Team
+                  </Link>
+                </li>
+                <li>
+                  <Link to={createPageUrl("contact")} className="hover:text-white transition-colors duration-200 text-sm">
+                    Contact
+                  </Link>
+                </li>
               </ul>
             </div>
             
             <div>
-              <h3 className="text-sm font-semibold text-white mb-4 uppercase tracking-wider">Support</h3>
-              <ul className="space-y-3 text-slate-400">
-                <li><a href="#" className="hover:text-white transition-colors duration-200 text-sm">Documentation</a></li>
-                <li><a href="#" className="hover:text-white transition-colors duration-200 text-sm">Help Center</a></li>
-                <li><a href="#" className="hover:text-white transition-colors duration-200 text-sm">Contact Us</a></li>
-                <li><a href="#" className="hover:text-white transition-colors duration-200 text-sm">License</a></li>
-              </ul>
+              <h3 className="text-sm font-semibold text-white mb-4 uppercase tracking-wider">Connect</h3>
+              <div className="space-y-4">
+                <div className="flex items-center space-x-3 text-slate-400">
+                  <i className="fas fa-envelope text-lg"></i>
+                  <span className="text-sm">info@builderslab.net</span>
+                </div>
+                <div className="flex items-center space-x-3 text-slate-400">
+                  <i className="fas fa-phone text-lg"></i>
+                  <span className="text-sm">+1 (555) 123-4567</span>
+                </div>
+                <div className="flex space-x-4 pt-2">
+                  <a href="#" className="text-slate-400 hover:text-white transition-colors duration-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 640 640" fill="currentColor">
+                      <path d="M453.2 112L523.8 112L369.6 288.2L551 528L409 528L297.7 382.6L170.5 528L99.8 528L264.7 339.5L90.8 112L236.4 112L336.9 244.9L453.2 112zM428.4 485.8L467.5 485.8L215.1 152L173.1 152L428.4 485.8z"/>
+                    </svg>
+                  </a>
+                  <a href="#" className="text-slate-400 hover:text-white transition-colors duration-200">
+                    <i className="fab fa-linkedin text-xl"></i>
+                  </a>
+                  <a href="#" className="text-slate-400 hover:text-white transition-colors duration-200">
+                    <i className="fab fa-github text-xl"></i>
+                  </a>
+                  <a href="#" className="text-slate-400 hover:text-white transition-colors duration-200">
+                    <i className="fab fa-instagram text-xl"></i>
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
           

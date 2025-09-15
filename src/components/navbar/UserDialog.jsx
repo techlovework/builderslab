@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { User } from "@/api/entities";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
-import { User as UserIcon, Settings, ShoppingBag, LogOut, Download, Crown } from "lucide-react";
+import { User as UserIcon, LogOut, ShoppingBag } from "lucide-react";
+import { User } from "@/api/entities";
 import { Link } from "react-router-dom";
 import { createPageUrl } from "@/utils";
+
+const GoogleIcon = ({ className }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" className={className}>
+    <path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12 c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24 c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/>
+    <path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657 C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/>
+    <path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36 c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/>
+    <path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571 c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/>
+  </svg>
+);
 
 export default function UserDialog({ isOpen, onClose }) {
   const [user, setUser] = useState(null);
@@ -14,17 +21,17 @@ export default function UserDialog({ isOpen, onClose }) {
 
   useEffect(() => {
     if (isOpen) {
-      loadUser();
+      loadUserData();
     }
   }, [isOpen]);
 
-  const loadUser = async () => {
+  const loadUserData = async () => {
+    setLoading(true);
     try {
       const userData = await User.me();
       setUser(userData);
     } catch (error) {
-      console.error('Error loading user:', error);
-      // User not logged in
+      setUser(null);
     } finally {
       setLoading(false);
     }
@@ -33,8 +40,9 @@ export default function UserDialog({ isOpen, onClose }) {
   const handleLogin = async () => {
     try {
       await User.login();
+      onClose();
     } catch (error) {
-      console.error('Login error:', error);
+      console.error("Login failed:", error);
     }
   };
 
@@ -44,13 +52,13 @@ export default function UserDialog({ isOpen, onClose }) {
       setUser(null);
       onClose();
     } catch (error) {
-      console.error('Logout error:', error);
+      console.error("Logout failed:", error);
     }
   };
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-md">
+      <DialogContent className="max-w-sm">
         <DialogHeader>
           <DialogTitle className="flex items-center">
             <UserIcon className="w-5 h-5 mr-2" />
@@ -60,95 +68,60 @@ export default function UserDialog({ isOpen, onClose }) {
         
         <div className="space-y-4">
           {loading ? (
-            <div className="text-center py-8">
-              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-slate-800 mx-auto"></div>
+            <div className="text-center py-4">
+              <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-slate-800 mx-auto"></div>
             </div>
           ) : user ? (
             <>
-              {/* User Profile */}
-              <div className="flex items-center space-x-4 p-4 bg-slate-50 rounded-xl">
-                <Avatar className="w-16 h-16">
-                  <AvatarFallback className="bg-slate-200 text-slate-700 text-lg font-semibold">
-                    {user.full_name?.charAt(0) || user.email?.charAt(0) || 'U'}
-                  </AvatarFallback>
-                </Avatar>
-                <div className="flex-1">
-                  <h3 className="font-semibold text-slate-800">{user.full_name || 'User'}</h3>
-                  <p className="text-sm text-slate-600">{user.email}</p>
-                  <Badge variant="outline" className="mt-1 capitalize">
-                    {user.role || 'user'}
-                  </Badge>
+              <div className="text-center py-4">
+                <div className="w-12 h-12 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <UserIcon className="w-6 h-6 text-slate-600" />
+                </div>
+                <h3 className="font-semibold text-slate-800">{user.full_name}</h3>
+                <p className="text-sm text-slate-500">{user.email}</p>
+                <div className="mt-2">
+                  <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                    user.role === 'admin' ? 'bg-purple-100 text-purple-800' : 'bg-blue-100 text-blue-800'
+                  }`}>
+                    {user.role}
+                  </span>
                 </div>
               </div>
-
-              {/* Quick Stats */}
-              <div className="grid grid-cols-2 gap-4">
-                <div className="text-center p-4 bg-blue-50 rounded-lg">
-                  <div className="text-2xl font-bold text-blue-600">0</div>
-                  <div className="text-sm text-blue-800">Templates Owned</div>
-                </div>
-                <div className="text-center p-4 bg-green-50 rounded-lg">
-                  <div className="text-2xl font-bold text-green-600">$0</div>
-                  <div className="text-sm text-green-800">Total Spent</div>
-                </div>
-              </div>
-
-              {/* Menu Items */}
+              
               <div className="space-y-2">
-                <Link to={createPageUrl("Dashboard")} onClick={onClose}>
-                  <Button variant="ghost" className="w-full justify-start">
-                    <ShoppingBag className="w-4 h-4 mr-3" />
+                <Link to={createPageUrl("Dashboard")}>
+                  <Button variant="outline" className="w-full justify-start" onClick={onClose}>
+                    <ShoppingBag className="w-4 h-4 mr-2" />
                     My Templates
                   </Button>
                 </Link>
-                <Button variant="ghost" className="w-full justify-start">
-                  <Download className="w-4 h-4 mr-3" />
-                  Downloads
-                </Button>
-                <Button variant="ghost" className="w-full justify-start">
-                  <Settings className="w-4 h-4 mr-3" />
-                  Account Settings
-                </Button>
-                <Button variant="ghost" className="w-full justify-start text-red-600 hover:text-red-700 hover:bg-red-50" onClick={handleLogout}>
-                  <LogOut className="w-4 h-4 mr-3" />
+                <Button 
+                  variant="outline" 
+                  className="w-full justify-start text-red-600 hover:text-red-700"
+                  onClick={handleLogout}
+                >
+                  <LogOut className="w-4 h-4 mr-2" />
                   Sign Out
                 </Button>
               </div>
             </>
           ) : (
-            <>
-              {/* Not logged in */}
-              <div className="text-center py-8">
-                <UserIcon className="w-16 h-16 text-slate-300 mx-auto mb-4" />
-                <h3 className="text-lg font-semibold text-slate-800 mb-2">Sign in to your account</h3>
-                <p className="text-slate-600 mb-6">Access your purchased templates and manage your account</p>
-                <Button onClick={handleLogin} className="w-full bg-slate-800 hover:bg-slate-700">
-                  Sign In with Google
+            <div className="py-4">
+              <div className="text-center">
+                <UserIcon className="w-12 h-12 mx-auto mb-3 text-slate-300" />
+                <h3 className="font-semibold text-slate-800 mb-2">Join BuildersLab</h3>
+                <p className="text-sm text-slate-500 mb-6">Sign in or create an account with Google to access your templates and manage purchases.</p>
+              </div>
+              <div className="space-y-3">
+                <Button onClick={handleLogin} className="w-full bg-white text-slate-700 border border-slate-300 hover:bg-slate-50 shadow-sm">
+                  <GoogleIcon className="w-5 h-5 mr-3" />
+                  Sign in with Google
                 </Button>
               </div>
-
-              {/* Benefits */}
-              <div className="space-y-3 pt-4 border-t">
-                <h4 className="font-semibold text-slate-800 flex items-center">
-                  <Crown className="w-4 h-4 mr-2 text-amber-500" />
-                  Member Benefits
-                </h4>
-                <ul className="space-y-2 text-sm text-slate-600">
-                  <li className="flex items-center">
-                    <div className="w-2 h-2 bg-green-400 rounded-full mr-2"></div>
-                    Download purchased templates anytime
-                  </li>
-                  <li className="flex items-center">
-                    <div className="w-2 h-2 bg-green-400 rounded-full mr-2"></div>
-                    Lifetime updates on all templates
-                  </li>
-                  <li className="flex items-center">
-                    <div className="w-2 h-2 bg-green-400 rounded-full mr-2"></div>
-                    Priority customer support
-                  </li>
-                </ul>
-              </div>
-            </>
+              <p className="text-xs text-slate-400 text-center mt-4">
+                We use Google for secure and easy login. We do not support email/password registration at this time.
+              </p>
+            </div>
           )}
         </div>
       </DialogContent>

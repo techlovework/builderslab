@@ -5,7 +5,9 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Sparkles, Send, CheckCircle2, Globe, Palette, Code } from 'lucide-react';
+import { Sparkles, Send, CheckCircle2, Globe, Palette, Code, Users, Briefcase } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { createPageUrl } from '@/utils';
 
 export default function CustomWebsiteForm() {
   const [formData, setFormData] = useState({
@@ -40,7 +42,7 @@ export default function CustomWebsiteForm() {
         },
         body: JSON.stringify({
           access_key: accessKey,
-          subject: 'New Custom Website Request from TemplateHub',
+          subject: 'New Custom Website Request from BuildersLab',
           from_name: formData.name,
           ...formData
         })
@@ -297,6 +299,23 @@ export default function CustomWebsiteForm() {
             </div>
             <h3 className="text-lg font-semibold text-slate-800 mb-2">Full Support</h3>
             <p className="text-slate-600">Ongoing maintenance and support after delivery</p>
+          </div>
+        </div>
+
+        <div className="text-center mt-20 border-t border-slate-200 pt-16">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <Link to={createPageUrl("Team")}>
+              <Button size="lg" variant="outline" className="w-full sm:w-auto border-slate-300 text-slate-700 hover:bg-slate-100 hover:text-slate-900 px-8 py-3 rounded-lg shadow-sm">
+                <Users className="w-4 h-4 mr-2" />
+                Our Team
+              </Button>
+            </Link>
+            <Link to={createPageUrl("Careers")}>
+              <Button size="lg" className="w-full sm:w-auto bg-slate-800 hover:bg-slate-700 text-white px-8 py-3 rounded-lg shadow-md">
+                <Briefcase className="w-4 h-4 mr-2" />
+                Work With Us
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

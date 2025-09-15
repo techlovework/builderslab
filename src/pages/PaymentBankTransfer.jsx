@@ -17,7 +17,7 @@ export default function BankTransferPayment() {
   const [error, setError] = useState('');
 
   const bankDetails = {
-    "Bank Name": "TemplateHub Global Bank",
+    "Bank Name": "BuildersLab Global Bank",
     "Account Number": "1234567890",
     "SWIFT/BIC": "THGBUS33",
     "Reference": `TH-Ref-${Date.now()}`
