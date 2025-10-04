@@ -16,7 +16,7 @@ export default function HeroSection() {
         playsInline
         className="absolute top-0 left-0 w-full h-full object-cover z-0"
       >
-        <source src="https://techimages.vercel.app/world-1.mp4" type="video/mp4" />
+        <source src="videos/world-1.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
 
@@ -32,10 +32,10 @@ export default function HeroSection() {
             </div>
           </div>
           
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 leading-tight">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-8 leading-tight limelight-regular">
             Beautiful Templates
             <br />
-            <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent limelight-regular">
               Made Simple
             </span>
           </h1>

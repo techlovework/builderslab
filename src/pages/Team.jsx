@@ -8,7 +8,7 @@ const teamMembers = [
   {
     id: 1,
     name: "Tega Emmanuel",
-    role: "Founder & CEO & Head Web Developer",
+    role: "Founder & CEO <br /> Head Web Developer",
     department: "Leadership",
     image: "images/t.png",
     bio: "Drives the vision, ensuring BuildersLab stays at the forefront of web design innovation.",
@@ -21,13 +21,13 @@ const teamMembers = [
   {
     id: 2,
     name: "Kosisochukwu Mbanugo",
-    role: "Marketer & Web Developer",
+    role: "Marketer <br /> Web Developer",
     department: "Engineering",
     image: "images/kosi.png",
     bio: "Leads our marketing efforts and crafts seamless web experiences that captivate users.",
     social: {
-      email: "mailto:kosi@builderslab.net",
       instagram: "https://instagram.com/kosi",
+      email: "mailto:kosi@builderslab.net",
       phone: "tel:+1234567891",
     },
   }
@@ -61,7 +61,10 @@ const MemberCard = ({ member }) => (
       className="w-32 h-32 rounded-full mx-auto mb-6 object-cover object-center shadow-lg ring-4 ring-white"
     />
     <h3 className="text-xl font-bold text-slate-900">{member.name}</h3>
-    <p className="text-blue-600 font-medium text-sm mb-4">{member.role}</p>
+<p
+  className="text-blue-600 font-medium text-sm mb-4"
+  dangerouslySetInnerHTML={{ __html: member.role }}
+/>
     <p className="text-slate-600 text-sm leading-relaxed mb-6 min-h-[4rem]">{member.bio}</p>
     <div className="flex items-center justify-center space-x-3">
       {Object.entries(member.social).map(([type, href]) => (

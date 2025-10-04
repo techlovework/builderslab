@@ -5,17 +5,17 @@ import { Badge } from '@/components/ui/badge';
 
 const projects = [
   {
-    title: 'QuantumLeap E-commerce',
-    category: 'E-commerce Platform',
-    description: 'A cutting-edge online store for a futuristic fashion brand, featuring a seamless user experience and advanced product filtering.',
-    imageUrl: 'https://images.unsplash.com/photo-1555529669-e69e7aa0ba9e?q=80&w=2070&auto=format&fit=crop',
+    title: 'Live HTML Editor',
+    category: 'Real-time Code Editor',
+    description: 'An elegant, real-time HTML, CSS, and JavaScript editor that provides a seamless development experience. It features a split-screen interface with a dark-themed code editor on one side and a live preview on the other, updating instantly as you type.',
+    imageUrl: 'images/project-of-the-month/html-editor.png',
     liveUrl: '#',
   },
   {
-    title: 'Stellar Solutions Corporate',
-    category: 'Corporate Website',
-    description: 'A professional and sleek corporate website for a B2B tech firm, designed to build trust and showcase their services effectively.',
-    imageUrl: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=2232&auto=format&fit=crop',
+    title: 'Iglare Optics',
+    category: 'E-commerce glasses Store',
+    description: 'Iglare Optics is an e-commerce platform specializing in premium eyewear. It allows customers to browse and purchase a wide range of glasses, including prescription glasses, sunglasses, and specialty eyewear. The platform offers features to manage prescriptions, virtually try on glasses, track orders, and interact with the brand.',
+    imageUrl: 'images/project-of-the-month/iglare-optics.png',
     liveUrl: '#',
   },
   {
